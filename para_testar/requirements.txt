@@ -1,0 +1,10 @@
+# Minimal deps to run gqm_runner locally
+face_recognition
+opencv-python
+scikit-learn
+numpy
+pillow
+psutil
+radon
+pytest
+pytest-cov

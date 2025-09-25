@@ -1,0 +1,35 @@
+1 - como usar (resumo)
+
+1.1 - crie um venv e instale deps:
+
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+
+2 - rode o coletor (apontando para o clone do repo e seus datasets):
+
+python gqm_runner.py \
+  --repo-path /caminho/para/source_code_final \
+  --known-dir  /caminho/para/dataset/known \
+  --test-dir   /caminho/para/dataset/test \
+  --out-dir    ./gqm_out \
+  --model hog \
+  --tolerance 0.6
+
+3 - saídas esperadas:
+
+gqm_out/gqm_report.json → relatório completo (G1, G2, G3, G4)
+
+gqm_out/predictions.csv → (y_true, y_pred) por imagem
+
+o que o script mede (mapeado ao GQM)
+
+- G1 (Corretude): accuracy, precision, recall, F1, confusion matrix e uma FPR “geral” considerando unknown como classe negativa.
+
+- G2 (Desempenho): latência por imagem (média/p50/p95/max/min), throughput, tempo total.
+
+- G2 (Recursos): CPU média/máx e memória RSS média/máx via psutil.
+
+- G3 (Qualidade de código): complexidade ciclomática com radon cc -j; cobertura com pytest --cov (se existir tests/).
+
+- G4 (Robustez): você pode rotular condições nos nomes dos arquivos (ex.: _lowlight, _angle45) e analisar depois no predictions.csv.
+
