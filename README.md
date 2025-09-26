@@ -1,3 +1,21 @@
+# Estrutura do Repositório
+
+Abaixo está uma explicação dos principais diretórios e arquivos deste repositório:
+
+| Pasta/Arquivo                | Descrição                                                                                 |
+|------------------------------|------------------------------------------------------------------------------------------|
+| `código_fonte_opensource/`   | Código original da aplicação. Todo baseado nos links de referência abaixo.               |
+| `script_para_testar/`        | Script em Python como exemplo para testes de performance, eficácia e etc.                |
+| `script_para_testar/gqm_runner.py`| Script principal para coleta e análise das métricas GQM.                            |
+| `script_para_testar/requirements.txt`| Lista de dependências Python necessárias para rodar o projeto.                   |
+| `gqm_out/`                   | Pasta gerada com os relatórios e resultados das métricas após execução do Script         |
+| `README.md`                  | Este arquivo de documentação.                                                            |
+| `Relatório_GQM_Aplicado.md`  | Exemplo de resultados esperados após aplicação do GQM no software.                       |
+| `Trabalho_Metric_Software_v1.md` | Documento detalhando o contexto, metas e métricas do trabalho em formato markdown.   |
+| `Trabalho_Metric_Software_v1.docx` | Documento detalhando o contexto, metas e métricas do trabalho em formato markdown. |
+
+---
+
 # Reconhecimento Facial — Métricas GQM
 
 > **Referências:**

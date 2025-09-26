@@ -23,7 +23,7 @@ gqm_out/predictions.csv → (y_true, y_pred) por imagem
 
 o que o script mede (mapeado ao GQM)
 
-- G1 (Corretude): accuracy, precision, recall, F1, confusion matrix e uma FPR “geral” considerando unknown como classe negativa.
+- G1 (Eficácia): accuracy, precision, recall, F1, confusion matrix e uma FPR “geral” considerando unknown como classe negativa.
 
 - G2 (Desempenho): latência por imagem (média/p50/p95/max/min), throughput, tempo total.
 
