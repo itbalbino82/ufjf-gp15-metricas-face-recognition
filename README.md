@@ -1,33 +1,30 @@
-## Project Python referência: https://realpython.com/face-recognition-with-python/
-## GitRoot Repositório: https://github.com/realpython/materials/tree/master/face-recognition 
-## GitRepo Code: https://github.com/realpython/materials/tree/master/face-recognition/source_code_final
+# Reconhecimento Facial — Métricas GQM
 
-## GQM Métricas — Implementação prática para o projeto de Reconhecimento Facial 
+> **Referências:**
+> - [Tutorial RealPython](https://realpython.com/face-recognition-with-python/)
+> - [Repositório GitRoot](https://github.com/realpython/materials/tree/master/face-recognition)
+> - [Código Final](https://github.com/realpython/materials/tree/master/face-recognition/source_code_final)
 
-Este é um pacote que provê 
-This package provides a **practical implementation** of the Goal–Question–Metric (GQM) plan discussed in chat.
+---
 
-## What it measures
+## 📊 GQM Métricas — Implementação Prática
 
-**G1 — Corretude**
-- Accuracy, precision, recall, F1
-- Confusion matrix
-- Overall FPR considering "unknown" as the negative class
+Este pacote fornece uma **implementação prática** do plano Goal–Question–Metric (GQM) para projetos de reconhecimento facial.
 
-**G2 — Desempenho & Recursos**
-- Latência por imagem (média, p50, p95, max, min)
-- Throughput (img/s)
-- Tempo total de execução
-- CPU média/máx e RSS (MB) via `psutil`
+---
 
-**G3 — Qualidade de Código**
-- Complexidade ciclomática por `radon cc -j`
-- Cobertura de testes com `pytest --cov` (se houver `tests/`)
+## O que é Medido?
 
-**G4 — Robustez (opcional)**
-- Você pode introduzir condições nos nomes/paths dos arquivos (ex.: `_lowlight`, `_angle45`) e depois filtrar a partir do CSV gerado.
+| Meta         | Métricas Principais                                                                 |
+|--------------|-------------------------------------------------------------------------------------|
+| **G1 — Eficacia**      | Acurácia, Precisão, Recall, F1, Confusion Matrix, FPR (classe "unknown")         |
+| **G2 — Desempenho**     | Latência (média, p50, p95, max, min), Throughput (img/s), Tempo total, CPU/RSS    |
+| **G3 — Qualidade Código**| Complexidade ciclomática (`radon cc -j`), Cobertura de testes (`pytest --cov`)   |
+| **G4 — Robustez**       | Filtragem por condições nos nomes dos arquivos (ex.: `_lowlight`, `_angle45`)     |
 
-## Dataset esperado
+---
+
+## 📁 Estrutura Esperada do Dataset
 
 ```
 known/
@@ -38,22 +35,21 @@ test/
   bob/*.jpg
   unknown/*.jpg   # opcional (negativos)
 ```
+- Pastas em `known/` definem as **classes (labels)**.
+- Em `test/`, a pasta `unknown/` (se existir) é tratada como negativos.
 
-As pastas em `known/` definem as **classes (labels)**. Em `test/`, se existir a pasta `unknown/`, ela será tratada como negativos.
+---
 
-## Uso
+## 🚀 Como Usar
 
-1) Crie um virtualenv e instale dependências:
+### 1. Ambiente Virtual & Dependências
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-2) Execute o coletor apontando para:
-- `--repo-path`: o diretório do código a ser inspecionado (por ex. `source_code_final` do RealPython);
-- `--known-dir`: base de rostos rotulados;
-- `--test-dir`: base de testes;
+### 2. Executando o Coletor
 
 ```bash
 python gqm_runner.py \
@@ -64,19 +60,37 @@ python gqm_runner.py \
   --model hog \
   --tolerance 0.6
 ```
+- `--repo-path`: diretório do código a ser inspecionado (ex.: `source_code_final`)
+- `--known-dir`: base de rostos rotulados
+- `--test-dir`: base de testes
 
-3) Saídas
-- `gqm_out/gqm_report.json` — relatório completo (métricas G1, G2, G3, G4)
-- `gqm_out/predictions.csv` — pares (y_true, y_pred) por imagem
+### 3. Saídas Geradas
 
-## Parâmetros para ser preciso nos testes
-- Para **CNN mais precisa**, use `--model cnn` (exige GPU/CUDA para render bom desempenho).
-- Ajuste `--tolerance` (0.4–0.6 costuma ser razoável; menor = mais estrito).
-- Se o repositório não tiver testes, a etapa de cobertura será apenas informativa.
-- Para datasets grandes, considere aumentar `--resource-sample-interval`.
+| Arquivo                       | Descrição                                      |
+|-------------------------------|------------------------------------------------|
+| `gqm_out/gqm_report.json`     | Relatório completo (métricas G1, G2, G3, G4)   |
+| `gqm_out/predictions.csv`     | Pares (y_true, y_pred) por imagem              |
 
-### Quebra automática por condições
-O `gqm_runner.py` detecta condições nos nomes dos arquivos de teste utilizando sufixos como:
-`_lowlight`, `_backlight`, `_blur`, `_occluded`, `_noisy`, `_angle15`, `_angle30`, `_angle45`, `_lowres`, `_highres`.
+---
 
-Exemplo de nome: `alice_01_lowlight.jpg` ou `bob_03_angle45.png`.
+## ⚙️ Parâmetros Importantes
+
+- Para **CNN mais precisa**, use `--model cnn` (exige GPU/CUDA).
+- Ajuste `--tolerance` (`0.4–0.6` recomendado; menor = mais estrito).
+- Se não houver testes, cobertura será apenas informativa.
+- Para datasets grandes, aumente `--resource-sample-interval`.
+
+---
+
+## 🧩 Detecção Automática de Condições
+
+O `gqm_runner.py` detecta condições nos nomes dos arquivos de teste usando sufixos como:
+
+```
+_lowlight, _backlight, _blur, _occluded, _noisy, _angle15, _angle30, _angle45, _lowres, _highres
+```
+
+**Exemplo de nome:**  
+`alice_01_lowlight.jpg` ou `bob_03_angle45.png`
+
+---

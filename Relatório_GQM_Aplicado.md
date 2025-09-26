@@ -1,4 +1,4 @@
-# Executive Summary — GQM Metrics for Face Recognition App
+# EXEMPLO DE RELATÓRIO COM A PRÁTICA GQM APLICADA AO SOFTWARE — GQM Face Recognition App
 
 Este documento resume as métricas extraídas com base na metodologia **Goal–Question–Metric (GQM)** aplicada ao projeto *face-recognition*.
 
